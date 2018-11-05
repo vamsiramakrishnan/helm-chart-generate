@@ -24,7 +24,7 @@ build:
     - script: 
       name: install go 
       code: | 
-        sudo apt-get --assume-yes-y install golang-go
+        sudo apt-get --assume-yes install golang-go
 
     - script:
         name: install chartify

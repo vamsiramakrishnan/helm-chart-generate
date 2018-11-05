@@ -1,16 +1,14 @@
-box: golang
-dev:
-  steps:
-    - internal/watch:
-        code: |
-          go get -u github.com/appscode/chartify
-        reload: true
+box: ubuntu:latest
 # Build definition
 build:
   # The steps that will be executed on build
   steps:
+    - script: install go 
+      code: | 
+        sudo apt-get install golang-go
+        
     - script:
-        name: go build
+        name: install chartify
         code: |
           go get -u github.com/appscode/chartify
         

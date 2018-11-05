@@ -30,6 +30,7 @@ build:
         name: install chartify
         code: |
           go get -v github.com/appscode/chartify
+          env
 
     - shellcheck:
       files: run.sh

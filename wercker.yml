@@ -7,7 +7,7 @@ build:
         name: install envsubst
         code: |
             sudo apt --assume-yes update && sudo apt --assume-yes upgrade
-            sudo apt --assume-yes install gettext which tar curl gzip
+            sudo apt --assume-yes install gettext tar curl gzip
     - script:
         name: config
         code: |

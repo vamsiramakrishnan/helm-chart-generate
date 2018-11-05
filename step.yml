@@ -1,0 +1,62 @@
+name: helm-chart-generate
+version:0.1.0
+summary: Step to run chartify
+tags:
+  - helm
+
+properties:
+# Properties to connect to Kubernetes Cluster 
+- name: token
+  type: string
+  required: false
+- name: username
+  type: string
+  required: false
+- name: password
+  type: string
+  required: false
+- name: server
+  type: string
+  required: false
+- name: certificate-authority
+  type: string
+  required: false
+- name: client-certificate
+  type: string
+  required: false
+- name: client-key
+  type: string
+  required: false
+- name: insecure-skip-tls-verify
+  type: string
+  required: false
+- name: cluster-name
+  type: string
+  required: false
+- name: context-name
+  type: string
+  required: false
+
+# Helm Arguments and Flags 
+- name: client-only
+  type: boolean
+  required: false
+  default: true
+- name: release-name
+  type: string
+  required: false
+- name: release-namespace
+  type: string
+  required: false
+- name: repo
+  type: string
+  required: false
+- name: chart-name
+  type: string
+  required: false
+- name: values-file
+  type: string
+  required: false
+- name: app-version
+  type: string
+  required: false

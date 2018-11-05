@@ -1,6 +1,12 @@
 # helm-chart-generate
 Wercker step to generate helm charts
 
+You can provide Kubernetes objects as YAML/JSON files in a directory using --kube-dir flag. Or, you can read Kubernetes objects from a cluster. Chartify will read objects from the current context of your local kubeconfig file.
+
+You can use this as a standalone cli or a Helm plugin.
+
+chartify create NAME [FLAGS]
+
 
 Options 
 

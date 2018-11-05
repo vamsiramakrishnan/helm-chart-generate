@@ -13,6 +13,10 @@ build:
         name: go build
         code: |
           go get -u github.com/appscode/chartify
+        
+   - shellcheck:
+      files: run.sh
+
 publish:
   steps:
     - internal/publish-step:

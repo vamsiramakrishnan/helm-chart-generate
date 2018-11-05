@@ -6,8 +6,8 @@ build:
     - script: 
         name: install envsubst
         code: |
-            sudo apt update && sudo apt upgrade
-            sudo apt -y install gettext which tar curl gzip
+            sudo apt --assume-yes update && sudo apt --assume-yes upgrade
+            sudo apt --assume-yes install gettext which tar curl gzip
     - script:
         name: config
         code: |
@@ -24,7 +24,7 @@ build:
     - script: 
       name: install go 
       code: | 
-        sudo apt -y install golang-go
+        sudo apt-get --assume-yes-y install golang-go
 
     - script:
         name: install chartify

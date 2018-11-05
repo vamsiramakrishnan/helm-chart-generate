@@ -1,6 +1,6 @@
 #!/bin/sh
 
-chartify= "$WERCKER_STEP_ROOT/gocode/bin/chartify"
+chartify= "$WERCKER_STEP_ROOT/go/bin/chartify"
 kubectl="$WERCKER_STEP_ROOT/kubectl"
 
 main() {

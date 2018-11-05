@@ -3,14 +3,32 @@ box: ubuntu:latest
 build:
   # The steps that will be executed on build
   steps:
-    - script: install go 
-      code: | 
-        sudo apt-get install golang-go
-        
-    - script:
-        name: install chartify
+    - script: 
+        name: install envsubst
         code: |
-          go get -u github.com/appscode/chartify
+            yum -y install gettext which tar curl gzip
+    - script:
+        name: config
+        code: |
+            export KUBERNETES_VERSION="1.10.5"
+            export KUBERNETES_SHA256="da9d557989a0b9671a610f21642052febb8f70c3cf144c98a8a4f7ecab6bafe2"
+            echo "Installing version $KUBERNETES_VERSION of kubernetes"
+    - script:
+        name: fetch kubernetes archive
+        code: |
+            curl -L https://dl.k8s.io/v${KUBERNETES_VERSION}/kubernetes-client-linux-amd64.tar.gz > kubernetes-client-linux-amd64.tar.gz
+            sha256sum kubernetes-client-linux-amd64.tar.gz | grep -q "$KUBERNETES_SHA256"
+            tar xvzf kubernetes-client-linux-amd64.tar.gz
+            kubernetes/client/bin/kubectl version --client
+      - script: 
+        name: install go 
+        code: | 
+          sudo apt-get install golang-go
+
+      - script:
+          name: install chartify
+          code: |
+            go get -u github.com/appscode/chartify
         
    - shellcheck:
       files: run.sh

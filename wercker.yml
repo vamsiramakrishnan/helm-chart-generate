@@ -21,22 +21,22 @@ build:
             sha256sum kubernetes-client-linux-amd64.tar.gz | grep -q "$KUBERNETES_SHA256"
             tar xvzf kubernetes-client-linux-amd64.tar.gz
             kubernetes/client/bin/kubectl version --client
-      - script: 
-        name: install go 
-        code: | 
-          sudo apt-get install golang-go
+    - script: 
+      name: install go 
+      code: | 
+        sudo apt-get install golang-go
 
-      - script:
-          name: install chartify
-          code: |
-            go get -v github.com/appscode/chartify
+    - script:
+        name: install chartify
+        code: |
+          go get -v github.com/appscode/chartify
 
-      - shellcheck:
-        files: run.sh
-        
-      - script:
-            name: prepare output
-            code: cp "kubernetes/client/bin/kubectl" "$WERCKER_ROOT/go" "$WERCKER_ROOT/gocode" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
+    - shellcheck:
+      files: run.sh
+
+    - script:
+          name: prepare output
+          code: cp "kubernetes/client/bin/kubectl" "$WERCKER_ROOT/go" "$WERCKER_ROOT/gocode" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
 
 publish:
   steps:

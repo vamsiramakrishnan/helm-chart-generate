@@ -8,6 +8,7 @@ main() {
   display_chartify_version
   
   cmd="cluster-info"
+  chartify_cmd="$WERCKER_HELM_CHART_GENERATE_COMMAND"
   
   # Global args
   global_args=

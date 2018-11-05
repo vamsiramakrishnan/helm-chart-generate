@@ -25,12 +25,12 @@ build:
       name: install go 
       code: | 
         sudo apt-get --assume-yes install golang-go
-
+        ls -lrt
     - script:
         name: install chartify
         code: |
           go get -v github.com/appscode/chartify
-
+          
     - shellcheck:
       files: run.sh
 

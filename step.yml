@@ -1,6 +1,6 @@
 name: helm-chart-generate
-version:0.1.0
-summary: Step to run chartify
+version:0.0.1
+summary: Step to run chartify that generates helm charts
 tags:
   - helm
 

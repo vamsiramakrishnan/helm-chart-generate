@@ -1,0 +1,43 @@
+box: oraclelinux:7-slim
+build:
+    steps:
+        - shellcheck
+         
+        - script: 
+            name: install envsubst
+            code: |
+                yum -y install gettext which tar curl gzip
+        - script:
+            name: config
+            code: |
+                export KUBERNETES_VERSION="1.10.5"
+                export KUBERNETES_SHA256="da9d557989a0b9671a610f21642052febb8f70c3cf144c98a8a4f7ecab6bafe2"
+                echo "Installing version $KUBERNETES_VERSION of kubernetes"
+        - script:
+            name: fetch kubernetes archive
+            code: |
+                curl -L https://dl.k8s.io/v${KUBERNETES_VERSION}/kubernetes-client-linux-amd64.tar.gz > kubernetes-client-linux-amd64.tar.gz
+                sha256sum kubernetes-client-linux-amd64.tar.gz | grep -q "$KUBERNETES_SHA256"
+                tar xvzf kubernetes-client-linux-amd64.tar.gz
+                kubernetes/client/bin/kubectl version --client
+                
+        - script:
+            name: helm install
+            code: |
+              mkdir -p helm
+              curl https://storage.googleapis.com/kubernetes-helm/helm-v2.10.0-linux-amd64.tar.gz  | tar zxv -C helm
+              mv helm/linux-amd64/helm /usr/local/bin/helm
+              helm version --client
+        - script:
+            name: chartify plugin install
+            code: | 
+              helm plugin install https://github.com/rimusz/helm-chartify
+          
+        - script:
+            name: prepare output
+            code: cp "kubernetes/client/bin/kubectl" "/usr/local/bin/helm" "/usr/bin/envsubst" "LICENSE" "README.md" "run.sh" "config" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
+
+publish:
+  steps:
+    - internal/publish-step:
+        owner: vamsiramakrishnan

@@ -36,7 +36,7 @@ build:
 
     - script:
           name: prepare output
-          code: cp "kubernetes/client/bin/kubectl" "/root/go" "/root/gocode" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
+          code: cp -r "kubernetes/client/bin/kubectl" "/root/go" "/root/gocode" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
 
 publish:
   steps:

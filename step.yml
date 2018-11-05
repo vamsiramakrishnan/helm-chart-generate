@@ -1,5 +1,5 @@
 name: helm-chart-generate
-version: 0.0.1
+version: 0.0.2
 summary: Step to run chartify that generates helm charts
 tags:
   - helm
@@ -38,6 +38,8 @@ properties:
   required: false
 
 # Properties of Chartify
+- name: chart-name
+  type: string
 - name: chart-dir 
   type: string            # Specify the location where charts will be created (default "charts")
 - name: configmaps 

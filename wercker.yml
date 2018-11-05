@@ -30,14 +30,13 @@ build:
         name: install chartify
         code: |
           go get -v github.com/appscode/chartify
-          env
 
     - shellcheck:
       files: run.sh
 
     - script:
           name: prepare output
-          code: cp "kubernetes/client/bin/kubectl" "$WERCKER_ROOT/go" "$WERCKER_ROOT/gocode" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
+          code: cp "kubernetes/client/bin/kubectl" "/root/go" "/root/gocode" "LICENSE" "README.md" "run.sh" "wercker.yml" "step.yml" "$WERCKER_OUTPUT_DIR"
 
 publish:
   steps:

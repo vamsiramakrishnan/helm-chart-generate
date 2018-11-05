@@ -9,14 +9,11 @@ dev:
 build:
   # The steps that will be executed on build
   steps:
-    # golint step!
-    - wercker/golint
-    - script:
-        name: debug
-        code: |
-          ls -l
-    # Build the project
     - script:
         name: go build
         code: |
           go get -u github.com/appscode/chartify
+publish:
+  steps:
+    - internal/publish-step:
+        owner: vamsiramakrishnan
